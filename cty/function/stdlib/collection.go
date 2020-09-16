@@ -758,6 +758,12 @@ var MergeFunc = function.New(&function.Spec{
 	Impl: func(args []cty.Value, retType cty.Type) (ret cty.Value, err error) {
 		outputMap := make(map[string]cty.Value)
 
+		// empty args is accepted, so assume an empty object since we have no
+		// key-value types.
+		if len(args) == 0 {
+			return cty.EmptyObjectVal, nil
+		}
+
 		// if all inputs are null, return a null value rather than an object
 		// with null attributes
 		allNull := true

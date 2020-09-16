@@ -535,6 +535,11 @@ func TestMerge(t *testing.T) {
 			cty.MapValEmpty(cty.String),
 			false,
 		},
+		{ // No arguments is permitted and should return an empty object
+			[]cty.Value{},
+			cty.EmptyObjectVal,
+			false,
+		},
 	}
 
 	for _, test := range tests {
